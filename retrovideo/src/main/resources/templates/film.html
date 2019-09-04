@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title=${huidigeFilm} == null ?
+'Film niet gevonden' : ${huidigeFilm.titel})"></head>
+<body>
+<nav th:replace="fragments::nav"></nav>
+
+
+<h2 th:if="${huidigeFilm} == null">Film niet gevonden:
+    <span th:text="${huidigeFilm.id}"></span></h2>
+
+<div th:if="${huidigeFilm} != null" th:object="${huidigeFilm}">
+    <h2 th:text="*{titel}"></h2>
+    <img th:src="@{'/img/' + ${id} + '.jpg'}">
+
+    <dl th:object="${huidigeFilm}">
+        <dt>Prijs</dt>
+        <dd th:text="*{prijs}"></dd>
+        <dt>Voorraad</dt>
+        <dd th:text="*{voorraad}"></dd>
+        <dt>Gereserveerd</dt>
+        <dd th:text="*{gereserveerd}"></dd>
+        <dt>Beschikbaar</dt>
+        <dd th:text="*{getBeschikbaar()}"></dd>
+        <div th:if="*{getBeschikbaar() > 0}">
+            <form method="post" th:action="@{/mandje}">
+                <input style="display: none;" type="text" th:field="*{id}" th:value="*{id}">
+                <input type="submit" value="In Mandje">
+            </form>
+        </div>
+    </dl>
+</div>
+
+<script th:src="@{/js/preventDoubleSubmit.js}"></script>
+</body>
+</html>

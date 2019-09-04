@@ -1,0 +1,32 @@
+.inline li {
+    display: inline;
+    margin: 5px;
+}
+
+dd {
+    font-weight: bold;
+    margin: 0 0 5px 0;
+}
+
+body {
+    font-family: Arial
+}
+
+th, td {
+    border: 1px solid #AAA;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+th {
+    background-color: #888;
+    font-weight: bold;
+    color: white;
+}
+
+td {
+    background-color: #EEE;
+}
+
+

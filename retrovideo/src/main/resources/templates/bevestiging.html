@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="nl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title=${'Bevestiging'})"></head>
+<body>
+<nav th:replace="fragments::nav"></nav>
+
+<h2>Bevestigen</h2>
+
+<div th:if="${totaalAantal<=0}">
+    <p>Geen films in mandje.</p>
+</div>
+
+<form th:if="${totaalAantal>0}" method="get" th:action="@{/klant/{id}/rapport(id = *{id})}" th:object="${klant}">
+    <label th:text="${totaalAantal}+' film(s) voor '+ *{voornaam} + ' ' + *{familienaam}"></label><br>
+    <input type="submit" value="Bevestigen"><br><br>
+</form>
+<script th:src="@{/js/preventDoubleSubmit.js}"></script>
+</body>
+</html>

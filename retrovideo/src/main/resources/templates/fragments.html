@@ -1,0 +1,21 @@
+<nav class="inline" th:fragment="nav" xmlns:th='http://www.thymeleaf.org'>
+    <ul>
+        <li><a th:href="@{/}">Genres</a></li>
+        <li><a th:href="@{/mandje}">Mandje</a></li>
+        <li><a th:href="@{/klant}">Klant</a></li>
+    </ul>
+</nav>
+
+<head th:fragment="head(title)" xmlns:th="http://www.thymeleaf.org">
+    <link rel="icon" th:href="@{/img/retrovideo.ico}" type="image/x-icon">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/retrovideo.css}">
+</head>
+
+<ul th:fragment="genreLijst" xmlns:th="http://www.thymeleaf.org" class="inline">
+    <a th:each="genre:${genrelijst}" th:object="${genre}" th:href="@{/genre/{id}(id=*{id})}"><li th:text="${genre.getNaam()}" ></li></a>
+</ul>
+
+<ul th:fragment="genreLijst2" xmlns:th="http://www.thymeleaf.org" class="inline">
+    <a href="/genre/1"><li >Aktiefilm</li></a><a href="/genre/2"><li >Avontuur</li></a><a href="/genre/3"><li >Cowboyfilm</li></a><a href="/genre/4"><li >Erotiek</li></a><a href="/genre/5"><li >Griezel</li></a><a href="/genre/6"><li >Humor</li></a><a href="/genre/7"><li >Kinderfilm</li></a><a href="/genre/8"><li >Oorlog</li></a><a href="/genre/9"><li >Piratenfilm</li></a><a href="/genre/10"><li >Science fiction</li></a><a href="/genre/11"><li >Sentimenteel</li></a><a href="/genre/12"><li >Speelfilm</li></a><a href="/genre/13"><li >Thriller</li></a>
+</ul>

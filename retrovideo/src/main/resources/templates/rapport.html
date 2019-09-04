@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments::head(title=${'Rapport'})"></head>
+<body>
+<nav th:replace="fragments::nav"></nav>
+
+<h2>Rapport</h2>
+<p th:if="${rapport} == 1">De reservatie is OK.</p>
+<p th:if="${rapport} == 0">De reservatie is niet gelukt.</p>
+
+</body>
+</html>

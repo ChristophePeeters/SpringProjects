@@ -15,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RequestMapping("/")
 class IndexController {
     private final AtomicInteger aantalKeerBekeken = new AtomicInteger();
+
     private String boodschap() {
         int uur = LocalTime.now().getHour();
         if (uur < 12) {

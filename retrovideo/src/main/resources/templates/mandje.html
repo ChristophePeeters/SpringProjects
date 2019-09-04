@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title=${'Mandje'})"></head>
+<body>
+<nav th:replace="fragments::nav"></nav>
+
+<h2>Mandje</h2>
+<form method="post" th:action="@{/mandje/verwijderen}">
+    <table>
+        <tr>
+            <th>Film</th>
+            <th>Prijs</th>
+            <th><input type="submit" value="Verwijderen"></th>
+        </tr>
+        <tr th:if="${gekozenFilms}!= null" th:each="film:${gekozenFilms}" th:object="${film}">
+            <td th:text="*{titel}"></td>
+            <td th:text="*{prijs}"></td>
+            <td><input type="checkbox" th:id="*{id}"></td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">Totaal:</td>
+            <td th:text="${totaalPrijs}"></td>
+            <td></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

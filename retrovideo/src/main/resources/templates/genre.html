@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title=${huidigGenre} == null ?
+'Genre niet gevonden' : ${huidigGenre.naam})"></head>
+<body>
+<nav th:replace="fragments::nav"></nav>
+
+<h2>Genres</h2>
+
+<ul th:replace="fragments::genreLijst2"></ul>
+
+<h2 th:if="${huidigGenre} == null">
+Genre niet gevonden: <span th:text="${huidigGenre.id}"></span>
+</h2>
+
+<div th:if="${huidigGenre} != null">
+    <h2 th:text="*{huidigGenre.naam}"></h2>
+    <ul class="inline">
+        <a th:each="film:${films}" th:object="${film}" th:if="${film.gendreid} == ${huidigGenre.id}"
+           th:href="@{/film/{id}(id=*{id})}">
+            <li>
+                <img th:src="@{'/img/' + ${film.id} + '.jpg'}">
+            </li>
+        </a>
+    </ul>
+</div>
+</body>
+</html>

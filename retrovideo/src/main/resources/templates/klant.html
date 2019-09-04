@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Klanten')"></head>
+<body>
+<nav th:replace="fragments::nav"></nav>
+<h2>Klanten</h2>
+<form th:object="${achternaamForm}" method="get" th:action="@{/klant/zoeken}">
+    <label>Familienaam bevat:<br>
+        <input type="text" name="naam" id="naam" th:field="*{naam}" required autofocus></label><br><br>
+    <input type="submit" value="Zoeken"><br><br>
+</form>
+
+<table>
+    <tr th:if="${zoeken}!= null">
+        <th>Naam</th>
+        <th>Straat - Huisnummer</th>
+        <th>Postcode</th>
+        <th>Gemeente</th>
+    </tr>
+    <tr th:each="klant:${zoeken}">
+        <td><a th:href="@{/klant/{id}(id=*{klant.id})}" th:text="${klant.voornaam + ' ' + klant.familienaam}"></a></td>
+        <td th:text="${klant.straatNummer}"></td>
+        <td th:text="${klant.postcode}"></td>
+        <td th:text="${klant.gemeente}"></td>
+    </tr>
+</table>
+<script th:src="@{/js/preventDoubleSubmit.js}"></script>
+</body>
+</html>

@@ -9,5 +9,4 @@ public class FrituurFridaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FrituurFridaApplication.class, args);
 	}
-
 }
