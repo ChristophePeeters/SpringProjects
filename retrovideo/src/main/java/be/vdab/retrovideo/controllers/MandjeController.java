@@ -19,13 +19,15 @@ import java.util.stream.Collectors;
 public class MandjeController {
     private final FilmService filmService;
     private BigDecimal totaalPrijs;
+    private final Mandje mandje;
 
-    public MandjeController(FilmService filmService) {
+    public MandjeController(FilmService filmService, Mandje mandje) {
         this.filmService = filmService;
+        this.mandje = mandje;
     }
 
     @GetMapping
-    public ModelAndView mandjeTonen(Mandje mandje) {
+    public ModelAndView mandjeTonen() {
         List<Film> films = filmService.findAll();
         ModelAndView modelAndView = new ModelAndView("mandje").addObject("films", films);
         if (mandje.isNietLeeg()) {
@@ -38,13 +40,15 @@ public class MandjeController {
     }
 
     @PostMapping("verwijderen")
-    public String verwijderen(Mandje mandje) {
-        mandje.verwijderen(1);
+    public String verwijderen(Integer mijnId) {
+        if (mijnId != null) {
+            mandje.verwijderen(mijnId);
+        }
         return "redirect:/mandje";
     }
 
     public @PostMapping
-    String toevoegen(int id, Mandje mandje) {
+    String toevoegen(int id) {
         mandje.toevoegen(id);
         return "redirect:/mandje";
     }

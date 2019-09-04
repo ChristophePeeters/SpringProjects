@@ -1,8 +1,8 @@
 <nav class="inline" th:fragment="nav" xmlns:th='http://www.thymeleaf.org'>
     <ul>
         <li><a th:href="@{/}">Genres</a></li>
-        <li><a th:href="@{/mandje}">Mandje</a></li>
-        <li><a th:href="@{/klant}">Klant</a></li>
+        <li th:if="${mandje.isNietLeeg()}"><a th:href="@{/mandje}">Mandje</a></li>
+        <li th:if="${mandje.isNietLeeg()}"><a th:href="@{/klant}">Klant</a></li>
     </ul>
 </nav>
 

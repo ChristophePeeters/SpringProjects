@@ -1,6 +1,7 @@
 package be.vdab.retrovideo.controllers;
 
 import be.vdab.retrovideo.services.GenreService;
+import be.vdab.retrovideo.sessions.Mandje;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,9 @@ public class IndexController {
     }
 
     @GetMapping
-    public ModelAndView genres() {
-        return new ModelAndView("index", "genrelijst", genreService.findAll());
+    public ModelAndView genres(Mandje mandje) {
+        ModelAndView modelAndView = new ModelAndView("index", "genrelijst", genreService.findAll());
+        modelAndView.addObject(mandje);
+        return modelAndView;
     }
 }
